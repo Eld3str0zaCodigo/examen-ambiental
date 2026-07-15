@@ -21,7 +21,7 @@ SECRET_KEY = 'django-insecure-^n2(8ff1!kurfii@kpk75jgps87vcu^2l@st2-qz#r&1wjhj16
 DEBUG = True
 
 # 🔵 PERMITIR CUALQUIER HOST (Esto evita el error DisallowedHost definitivamente)
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['examen-ambiental.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
