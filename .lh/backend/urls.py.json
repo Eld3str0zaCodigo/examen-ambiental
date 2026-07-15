@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1784135050672,
@@ -28,6 +28,22 @@
                 {
                     "date": 1784135652214,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,21 @@\n+from django.contrib import admin\r\n+from django.urls import path, include\r\n+from rest_framework import routers\r\n+from campañas.views import CampañaViewSet, ActividadViewSet \r\n+\r\n+# Importaciones necesarias para los archivos MEDIA\r\n+from django.conf import settings\r\n+from django.conf.urls.static import static\r\n+\r\n+router = routers.DefaultRouter()\r\n+router.register(r'campanias', CampañaViewSet, basename='campaña')\r\n+router.register(r'actividades', ActividadViewSet, basename='actividad')\r\n+\r\n+urlpatterns = [\r\n+    path('admin/', admin.site.urls),\r\n+    path('api/', include(router.urls)),\r\n+]\r\n+\r\n+# ESTO ES LO QUE FALTA: Le dice a Django cómo servir las fotos en desarrollo\r\n+if settings.DEBUG:\r\n+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1784148442221,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n from django.contrib import admin\r\n from django.urls import path, include\r\n from rest_framework import routers\r\n from campañas.views import CampañaViewSet, ActividadViewSet \r\n-\r\n+from django.contrib.auth import get_user_model\r\n+from django.db.utils import IntegrityError\r\n # Importaciones necesarias para los archivos MEDIA\r\n from django.conf import settings\r\n from django.conf.urls.static import static\r\n \r\n@@ -17,19 +18,5 @@\n ]\r\n \r\n # ESTO ES LO QUE FALTA: Le dice a Django cómo servir las fotos en desarrollo\r\n if settings.DEBUG:\r\n-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\n-from django.contrib import admin\r\n-from django.urls import path, include\r\n-from rest_framework import routers\r\n-from campañas.views import CampañaViewSet, ActividadViewSet \r\n-\r\n-# Configuramos el router\r\n-router = routers.DefaultRouter()\r\n-router.register(r'campanias', CampañaViewSet, basename='campaña')\r\n-router.register(r'actividades', ActividadViewSet, basename='actividad')\r\n-\r\n-urlpatterns = [\r\n-    path('admin/', admin.site.urls),\r\n-    path('api/', include(router.urls)),\r\n-]\n\\ No newline at end of file\n+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1784148448368,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n from django.contrib import admin\r\n from django.urls import path, include\r\n from rest_framework import routers\r\n from campañas.views import CampañaViewSet, ActividadViewSet \r\n-from django.contrib.auth import get_user_model\r\n-from django.db.utils import IntegrityError\r\n+\r\n # Importaciones necesarias para los archivos MEDIA\r\n from django.conf import settings\r\n from django.conf.urls.static import static\r\n \r\n"
+                },
+                {
+                    "date": 1784148456644,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +0,0 @@\n-from django.contrib import admin\r\n-from django.urls import path, include\r\n-from rest_framework import routers\r\n-from campañas.views import CampañaViewSet, ActividadViewSet \r\n-\r\n-# Importaciones necesarias para los archivos MEDIA\r\n-from django.conf import settings\r\n-from django.conf.urls.static import static\r\n-\r\n-router = routers.DefaultRouter()\r\n-router.register(r'campanias', CampañaViewSet, basename='campaña')\r\n-router.register(r'actividades', ActividadViewSet, basename='actividad')\r\n-\r\n-urlpatterns = [\r\n-    path('admin/', admin.site.urls),\r\n-    path('api/', include(router.urls)),\r\n-]\r\n-\r\n-# ESTO ES LO QUE FALTA: Le dice a Django cómo servir las fotos en desarrollo\r\n-if settings.DEBUG:\r\n-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1784148521989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,34 @@\n+from django.contrib import admin\r\n+from django.urls import path, include\r\n+from rest_framework import routers\r\n+from campañas.views import CampañaViewSet, ActividadViewSet \r\n+\r\n+# Importaciones necesarias para los archivos MEDIA\r\n+from django.conf import settings\r\n+from django.conf.urls.static import static\r\n+\r\n+from django.contrib.auth import get_user_model\r\n+from django.db.utils import IntegrityError\r\n+\r\n+router = routers.DefaultRouter()\r\n+router.register(r'campanias', CampañaViewSet, basename='campaña')\r\n+router.register(r'actividades', ActividadViewSet, basename='actividad')\r\n+\r\n+urlpatterns = [\r\n+    path('admin/', admin.site.urls),\r\n+    path('api/', include(router.urls)),\r\n+]\r\n+\r\n+# Le dice a Django cómo servir las fotos en desarrollo\r\n+if settings.DEBUG:\r\n+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\r\n+\r\n+# 🔥 CREACIÓN AUTOMÁTICA DEL ADMINISTRADOR EN PRODUCCIÓN\r\n+User = get_user_model()\r\n+try:\r\n+    # Puedes cambiar 'admin', 'admin@mail.com' y 'admin1234' por tus credenciales\r\n+    User.objects.create_superuser('admin', 'admin@mail.com', 'admin1234')\r\n+    print(\"¡Superusuario creado con éxito en producción!\")\r\n+except IntegrityError:\r\n+    # Si ya se creó en un reinicio anterior, no hace nada para evitar errores\r\n+    pass\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1784135050672,
