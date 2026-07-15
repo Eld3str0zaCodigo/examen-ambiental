@@ -20,8 +20,10 @@ SECRET_KEY = 'django-insecure-^n2(8ff1!kurfii@kpk75jgps87vcu^2l@st2-qz#r&1wjhj16
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# 🔵 PERMITIR CUALQUIER HOST (Esto evita el error DisallowedHost definitivamente)
-ALLOWED_HOSTS = ['examen-ambiental.onrender.com', 'localhost', '127.0.0.1']
+import os
+
+# Toma el dominio automático de Render, y si no, permite cualquiera con '*'
+ALLOWED_HOSTS = [os.environ.get("RENDER_EXTERNAL_HOSTNAME", "*"), '*']
 
 
 # Application definition
