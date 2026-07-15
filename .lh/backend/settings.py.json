@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 13,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1784132495273,
@@ -60,6 +60,14 @@
                 {
                     "date": 1784135631766,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,10 +61,10 @@\n CORS_ALLOWED_ORIGINS = [\r\n     \"http://localhost:5173\",\r\n     \"http://127.0.0.1:5173\",\r\n ]\r\n-]\r\n \r\n+\r\n # Configuración para archivos multimedia (Imágenes)\r\n import os\r\n MEDIA_URL = '/media/'\r\n MEDIA_ROOT = os.path.join(BASE_DIR, 'media')\r\n@@ -134,4 +134,11 @@\n # Static files (CSS, JavaScript, Images)\r\n # https://docs.djangoproject.com/en/6.0/howto/static-files/\r\n \r\n STATIC_URL = 'static/'\r\n+\r\n+import os\r\n+\r\n+# ... (lo que ya tengas al final)\r\n+\r\n+MEDIA_URL = '/media/'\r\n+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1784148718279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \r\n # SECURITY WARNING: don't run with debug turned on in production!\r\n DEBUG = True\r\n \r\n-ALLOWED_HOSTS = []\r\n+ALLOWED_HOSTS = [+]\r\n \r\n \r\n # Application definition\r\n \r\n"
+                },
+                {
+                    "date": 1784148725966,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n \r\n # SECURITY WARNING: don't run with debug turned on in production!\r\n DEBUG = True\r\n \r\n-ALLOWED_HOSTS = [+]\r\n+ALLOWED_HOSTS = ['*']\r\n \r\n \r\n # Application definition\r\n \r\n"
                 }
             ],
             "date": 1784132495273,
