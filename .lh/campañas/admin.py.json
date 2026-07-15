@@ -1,0 +1,18 @@
+{
+    "sourceFile": "campañas/admin.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1784134324709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1784134324709,
+            "name": "Commit-0",
+            "content": "from django.contrib import admin\r\nfrom .models import Campaña, Actividad\r\n\r\nadmin.site.register(Campaña)\r\nadmin.site.register(Actividad)"
+        }
+    ]
+}

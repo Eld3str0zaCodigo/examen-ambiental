@@ -1,0 +1,38 @@
+{
+    "sourceFile": "backend/urls.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1784135050672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1784135080788,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n from campañas.views import CampañaViewSet, ActividadViewSet \r\n \r\n # Configuramos el router de Django REST Framework\r\n router = routers.DefaultRouter()\r\n-router.register(r'campanias', CampañaViewSet, basename='campaña')\r\n+router.register(r'campaas', CampañaViewSet, basename='campaña')\r\n router.register(r'actividades', ActividadViewSet, basename='actividad')\r\n \r\n urlpatterns = [\r\n     path('admin/', admin.site.urls),\r\n"
+                },
+                {
+                    "date": 1784135085899,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n from campañas.views import CampañaViewSet, ActividadViewSet \r\n \r\n # Configuramos el router de Django REST Framework\r\n router = routers.DefaultRouter()\r\n-router.register(r'campaas', CampañaViewSet, basename='campaña')\r\n+router.register(r'campañas', CampañaViewSet, basename='campaña')\r\n router.register(r'actividades', ActividadViewSet, basename='actividad')\r\n \r\n urlpatterns = [\r\n     path('admin/', admin.site.urls),\r\n"
+                },
+                {
+                    "date": 1784135095185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n from campañas.views import CampañaViewSet, ActividadViewSet \r\n \r\n # Configuramos el router de Django REST Framework\r\n router = routers.DefaultRouter()\r\n-router.register(r'campañas', CampañaViewSet, basename='campaña')\r\n+router.register(r'campañas', CampañaViewSet, basename='campañas')\r\n router.register(r'actividades', ActividadViewSet, basename='actividad')\r\n \r\n urlpatterns = [\r\n     path('admin/', admin.site.urls),\r\n"
+                },
+                {
+                    "date": 1784135138193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,14 @@\n from django.contrib import admin\r\n from django.urls import path, include\r\n from rest_framework import routers\r\n-# Reemplaza 'campañas' por el nombre exacto de la carpeta de tu app si es diferente\r\n from campañas.views import CampañaViewSet, ActividadViewSet \r\n \r\n-# Configuramos el router de Django REST Framework\r\n+# Configuramos el router\r\n router = routers.DefaultRouter()\r\n-router.register(r'campañas', CampañaViewSet, basename='campañas')\r\n+router.register(r'campanias', CampañaViewSet, basename='campaña')\r\n router.register(r'actividades', ActividadViewSet, basename='actividad')\r\n \r\n urlpatterns = [\r\n     path('admin/', admin.site.urls),\r\n-    path('api/', include(router.urls)), # Esto expone /api/campanias/ y /api/actividades/\r\n+    path('api/', include(router.urls)),\r\n ]\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1784135652214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,21 @@\n+from django.contrib import admin\r\n+from django.urls import path, include\r\n+from rest_framework import routers\r\n+from campañas.views import CampañaViewSet, ActividadViewSet \r\n+\r\n+# Importaciones necesarias para los archivos MEDIA\r\n+from django.conf import settings\r\n+from django.conf.urls.static import static\r\n+\r\n+router = routers.DefaultRouter()\r\n+router.register(r'campanias', CampañaViewSet, basename='campaña')\r\n+router.register(r'actividades', ActividadViewSet, basename='actividad')\r\n+\r\n+urlpatterns = [\r\n+    path('admin/', admin.site.urls),\r\n+    path('api/', include(router.urls)),\r\n+]\r\n+\r\n+# ESTO ES LO QUE FALTA: Le dice a Django cómo servir las fotos en desarrollo\r\n+if settings.DEBUG:\r\n+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1784135050672,
+            "name": "Commit-0",
+            "content": "from django.contrib import admin\r\nfrom django.urls import path, include\r\nfrom rest_framework import routers\r\n# Reemplaza 'campañas' por el nombre exacto de la carpeta de tu app si es diferente\r\nfrom campañas.views import CampañaViewSet, ActividadViewSet \r\n\r\n# Configuramos el router de Django REST Framework\r\nrouter = routers.DefaultRouter()\r\nrouter.register(r'campanias', CampañaViewSet, basename='campaña')\r\nrouter.register(r'actividades', ActividadViewSet, basename='actividad')\r\n\r\nurlpatterns = [\r\n    path('admin/', admin.site.urls),\r\n    path('api/', include(router.urls)), # Esto expone /api/campanias/ y /api/actividades/\r\n]"
+        }
+    ]
+}

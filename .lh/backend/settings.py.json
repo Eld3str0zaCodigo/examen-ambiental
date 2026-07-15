@@ -1,0 +1,70 @@
+{
+    "sourceFile": "backend/settings.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 13,
+            "patches": [
+                {
+                    "date": 1784132495273,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1784133650317,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,12 +29,24 @@\n \r\n \r\n # Application definition\r\n \r\n+# backend/settings.py\r\n+\r\n INSTALLED_APPS = [\r\n-    # ... apps por defecto\r\n+    # Estas son las aplicaciones por defecto de Django que NUNCA deben borrarse:\r\n+    'django.contrib.admin',\r\n+    'django.contrib.auth',\r\n+    'django.contrib.contenttypes',\r\n+    'django.contrib.sessions',\r\n+    'django.contrib.messages',\r\n+    'django.contrib.staticfiles',\r\n+    \r\n+    # Estas son las librerías externas que agregamos:\r\n     'rest_framework',\r\n     'corsheaders',\r\n+    \r\n+    # Y esta es tu aplicación local:\r\n     'campañas',\r\n ]\r\n \r\n MIDDLEWARE = [\r\n"
+                },
+                {
+                    "date": 1784133699281,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,22 @@\n \r\n MIDDLEWARE = [\r\n     'corsheaders.middleware.CorsMiddleware', # Debe ir arriba del CommonMiddleware\r\n     'django.middleware.common.CommonMiddleware',\r\n-    # ...\r\n+  # backend/settings.py\r\n+\r\n+MIDDLEWARE = [\r\n+    # CORS Middleware debe ir lo más arriba posible, preferiblemente antes de CommonMiddleware\r\n+    'corsheaders.middleware.CorsMiddleware',\r\n+    \r\n+    # Middlewares obligatorios de Django\r\n+    'django.middleware.security.SecurityMiddleware',\r\n+    'django.contrib.sessions.middleware.SessionMiddleware',\r\n+    'django.middleware.common.CommonMiddleware',\r\n+    'django.middleware.csrf.CsrfViewMiddleware',\r\n+    'django.contrib.auth.middleware.AuthenticationMiddleware',\r\n+    'django.contrib.messages.middleware.MessageMiddleware',\r\n+    'django.middleware.clickjacking.XFrameOptionsMiddleware',\r\n ]\r\n \r\n CORS_ALLOWED_ORIGINS = [\r\n     \"http://localhost:5173\", # Puerto común de Vite/React\r\n"
+                },
+                {
+                    "date": 1784133706726,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,11 +51,8 @@\n \r\n MIDDLEWARE = [\r\n     'corsheaders.middleware.CorsMiddleware', # Debe ir arriba del CommonMiddleware\r\n     'django.middleware.common.CommonMiddleware',\r\n-  # backend/settings.py\r\n-\r\n-MIDDLEWARE = [\r\n     # CORS Middleware debe ir lo más arriba posible, preferiblemente antes de CommonMiddleware\r\n     'corsheaders.middleware.CorsMiddleware',\r\n     \r\n     # Middlewares obligatorios de Django\r\n"
+                },
+                {
+                    "date": 1784133715795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,10 +51,8 @@\n \r\n MIDDLEWARE = [\r\n     'corsheaders.middleware.CorsMiddleware', # Debe ir arriba del CommonMiddleware\r\n     'django.middleware.common.CommonMiddleware',\r\n-    # CORS Middleware debe ir lo más arriba posible, preferiblemente antes de CommonMiddleware\r\n-    'corsheaders.middleware.CorsMiddleware',\r\n     \r\n     # Middlewares obligatorios de Django\r\n     'django.middleware.security.SecurityMiddleware',\r\n     'django.contrib.sessions.middleware.SessionMiddleware',\r\n"
+                },
+                {
+                    "date": 1784133721044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,10 +51,8 @@\n \r\n MIDDLEWARE = [\r\n     'corsheaders.middleware.CorsMiddleware', # Debe ir arriba del CommonMiddleware\r\n     'django.middleware.common.CommonMiddleware',\r\n-    \r\n-    # Middlewares obligatorios de Django\r\n     'django.middleware.security.SecurityMiddleware',\r\n     'django.contrib.sessions.middleware.SessionMiddleware',\r\n     'django.middleware.common.CommonMiddleware',\r\n     'django.middleware.csrf.CsrfViewMiddleware',\r\n"
+                },
+                {
+                    "date": 1784133731149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,8 @@\n     'corsheaders.middleware.CorsMiddleware', # Debe ir arriba del CommonMiddleware\r\n     'django.middleware.common.CommonMiddleware',\r\n     'django.middleware.security.SecurityMiddleware',\r\n     'django.contrib.sessions.middleware.SessionMiddleware',\r\n-    'django.middleware.common.CommonMiddleware',\r\n     'django.middleware.csrf.CsrfViewMiddleware',\r\n     'django.contrib.auth.middleware.AuthenticationMiddleware',\r\n     'django.contrib.messages.middleware.MessageMiddleware',\r\n     'django.middleware.clickjacking.XFrameOptionsMiddleware',\r\n"
+                },
+                {
+                    "date": 1784134618335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,13 @@\n     'django.contrib.contenttypes',\r\n     'django.contrib.sessions',\r\n     'django.contrib.messages',\r\n     'django.contrib.staticfiles',\r\n-    \r\n+    INSTALLED_APPS = [\r\n+    ...,\r\n+    \"corsheaders\",\r\n+    \"campañas\", # Tu app\r\n+]\r\n     # Estas son las librerías externas que agregamos:\r\n     'rest_framework',\r\n     'corsheaders',\r\n     \r\n"
+                },
+                {
+                    "date": 1784134627179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,13 +39,10 @@\n     'django.contrib.contenttypes',\r\n     'django.contrib.sessions',\r\n     'django.contrib.messages',\r\n     'django.contrib.staticfiles',\r\n-    INSTALLED_APPS = [\r\n-    ...,\r\n     \"corsheaders\",\r\n     \"campañas\", # Tu app\r\n-]\r\n     # Estas son las librerías externas que agregamos:\r\n     'rest_framework',\r\n     'corsheaders',\r\n     \r\n"
+                },
+                {
+                    "date": 1784134634034,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,10 +39,8 @@\n     'django.contrib.contenttypes',\r\n     'django.contrib.sessions',\r\n     'django.contrib.messages',\r\n     'django.contrib.staticfiles',\r\n-    \"corsheaders\",\r\n-    \"campañas\", # Tu app\r\n     # Estas son las librerías externas que agregamos:\r\n     'rest_framework',\r\n     'corsheaders',\r\n     \r\n"
+                },
+                {
+                    "date": 1784134658640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,17 +42,17 @@\n     'django.contrib.staticfiles',\r\n     # Estas son las librerías externas que agregamos:\r\n     'rest_framework',\r\n     'corsheaders',\r\n-    \r\n     # Y esta es tu aplicación local:\r\n     'campañas',\r\n ]\r\n \r\n MIDDLEWARE = [\r\n     'corsheaders.middleware.CorsMiddleware', # Debe ir arriba del CommonMiddleware\r\n     'django.middleware.common.CommonMiddleware',\r\n     'django.middleware.security.SecurityMiddleware',\r\n+    \"corsheaders.middleware.CorsMiddleware\",\r\n     'django.contrib.sessions.middleware.SessionMiddleware',\r\n     'django.middleware.csrf.CsrfViewMiddleware',\r\n     'django.contrib.auth.middleware.AuthenticationMiddleware',\r\n     'django.contrib.messages.middleware.MessageMiddleware',\r\n"
+                },
+                {
+                    "date": 1784134666092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,8 @@\n     'campañas',\r\n ]\r\n \r\n MIDDLEWARE = [\r\n-    'corsheaders.middleware.CorsMiddleware', # Debe ir arriba del CommonMiddleware\r\n     'django.middleware.common.CommonMiddleware',\r\n     'django.middleware.security.SecurityMiddleware',\r\n     \"corsheaders.middleware.CorsMiddleware\",\r\n     'django.contrib.sessions.middleware.SessionMiddleware',\r\n"
+                },
+                {
+                    "date": 1784134681465,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,11 +58,12 @@\n     'django.middleware.clickjacking.XFrameOptionsMiddleware',\r\n ]\r\n \r\n CORS_ALLOWED_ORIGINS = [\r\n-    \"http://localhost:5173\", # Puerto común de Vite/React\r\n-    \"http://localhost:3000\",\r\n+    \"http://localhost:5173\",\r\n+    \"http://127.0.0.1:5173\",\r\n ]\r\n+]\r\n \r\n # Configuración para archivos multimedia (Imágenes)\r\n import os\r\n MEDIA_URL = '/media/'\r\n"
+                },
+                {
+                    "date": 1784135631766,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,10 +61,10 @@\n CORS_ALLOWED_ORIGINS = [\r\n     \"http://localhost:5173\",\r\n     \"http://127.0.0.1:5173\",\r\n ]\r\n-]\r\n \r\n+\r\n # Configuración para archivos multimedia (Imágenes)\r\n import os\r\n MEDIA_URL = '/media/'\r\n MEDIA_ROOT = os.path.join(BASE_DIR, 'media')\r\n@@ -134,4 +134,11 @@\n # Static files (CSS, JavaScript, Images)\r\n # https://docs.djangoproject.com/en/6.0/howto/static-files/\r\n \r\n STATIC_URL = 'static/'\r\n+\r\n+import os\r\n+\r\n+# ... (lo que ya tengas al final)\r\n+\r\n+MEDIA_URL = '/media/'\r\n+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1784132495273,
+            "name": "Commit-0",
+            "content": "\"\"\"\r\nDjango settings for backend project.\r\n\r\nGenerated by 'django-admin startproject' using Django 6.0.7.\r\n\r\nFor more information on this file, see\r\nhttps://docs.djangoproject.com/en/6.0/topics/settings/\r\n\r\nFor the full list of settings and their values, see\r\nhttps://docs.djangoproject.com/en/6.0/ref/settings/\r\n\"\"\"\r\n\r\nfrom pathlib import Path\r\n\r\n# Build paths inside the project like this: BASE_DIR / 'subdir'.\r\nBASE_DIR = Path(__file__).resolve().parent.parent\r\n\r\n\r\n# Quick-start development settings - unsuitable for production\r\n# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/\r\n\r\n# SECURITY WARNING: keep the secret key used in production secret!\r\nSECRET_KEY = 'django-insecure-^n2(8ff1!kurfii@kpk75jgps87vcu^2l@st2-qz#r&1wjhj16'\r\n\r\n# SECURITY WARNING: don't run with debug turned on in production!\r\nDEBUG = True\r\n\r\nALLOWED_HOSTS = []\r\n\r\n\r\n# Application definition\r\n\r\nINSTALLED_APPS = [\r\n    # ... apps por defecto\r\n    'rest_framework',\r\n    'corsheaders',\r\n    'campañas',\r\n]\r\n\r\nMIDDLEWARE = [\r\n    'corsheaders.middleware.CorsMiddleware', # Debe ir arriba del CommonMiddleware\r\n    'django.middleware.common.CommonMiddleware',\r\n    # ...\r\n]\r\n\r\nCORS_ALLOWED_ORIGINS = [\r\n    \"http://localhost:5173\", # Puerto común de Vite/React\r\n    \"http://localhost:3000\",\r\n]\r\n\r\n# Configuración para archivos multimedia (Imágenes)\r\nimport os\r\nMEDIA_URL = '/media/'\r\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\r\n\r\nROOT_URLCONF = 'backend.urls'\r\n\r\nTEMPLATES = [\r\n    {\r\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\r\n        'DIRS': [],\r\n        'APP_DIRS': True,\r\n        'OPTIONS': {\r\n            'context_processors': [\r\n                'django.template.context_processors.request',\r\n                'django.contrib.auth.context_processors.auth',\r\n                'django.contrib.messages.context_processors.messages',\r\n            ],\r\n        },\r\n    },\r\n]\r\n\r\nWSGI_APPLICATION = 'backend.wsgi.application'\r\n\r\n\r\n# Database\r\n# https://docs.djangoproject.com/en/6.0/ref/settings/#databases\r\n\r\nDATABASES = {\r\n    'default': {\r\n        'ENGINE': 'django.db.backends.sqlite3',\r\n        'NAME': BASE_DIR / 'db.sqlite3',\r\n    }\r\n}\r\n\r\n\r\n# Password validation\r\n# https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators\r\n\r\nAUTH_PASSWORD_VALIDATORS = [\r\n    {\r\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\r\n    },\r\n    {\r\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\r\n    },\r\n    {\r\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\r\n    },\r\n    {\r\n        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',\r\n    },\r\n]\r\n\r\n\r\n# Internationalization\r\n# https://docs.djangoproject.com/en/6.0/topics/i18n/\r\n\r\nLANGUAGE_CODE = 'en-us'\r\n\r\nTIME_ZONE = 'UTC'\r\n\r\nUSE_I18N = True\r\n\r\nUSE_TZ = True\r\n\r\n\r\n# Static files (CSS, JavaScript, Images)\r\n# https://docs.djangoproject.com/en/6.0/howto/static-files/\r\n\r\nSTATIC_URL = 'static/'\r\n"
+        }
+    ]
+}

@@ -1,0 +1,50 @@
+{
+    "sourceFile": "campañas/models.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1784132445866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1784136225672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,14 @@\n-# campañas/models.py\r\n from django.db import models\r\n \r\n-class Campaña(models.Model):\r\n-    nombre = models.CharField(max_length=150, unique=True)\r\n-    descripcion = models.TextField()\r\n-    fecha_inicio = models.DateField()\r\n-    presupuesto = models.DecimalField(max_digits=10, decimal_places=2)\r\n+from django.db import models\r\n \r\n+class Campania(models.Model):\r\n+    nombre = models.CharField(max_value=100)\r\n+    descripcion = models.TextField(blank=True, null=True)\r\n+    objetivo = models.CharField(max_value=200)\r\n+    imagen_campania = models.ImageField(upload_to='campanias/', blank=True, null=True) # <-- LA IMAGEN OBLIGATORIA DEL MODELO 1\r\n+\r\n     def __str__(self):\r\n         return self.nombre\r\n \r\n class Actividad(models.Model):\r\n"
+                },
+                {
+                    "date": 1784136231738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n from django.db import models\r\n \r\n from django.db import models\r\n \r\n-class Campania(models.Model):\r\n+class Campaña(models.Model):\r\n     nombre = models.CharField(max_value=100)\r\n     descripcion = models.TextField(blank=True, null=True)\r\n     objetivo = models.CharField(max_value=200)\r\n     imagen_campania = models.ImageField(upload_to='campanias/', blank=True, null=True) # <-- LA IMAGEN OBLIGATORIA DEL MODELO 1\r\n"
+                },
+                {
+                    "date": 1784136240718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n class Campaña(models.Model):\r\n     nombre = models.CharField(max_value=100)\r\n     descripcion = models.TextField(blank=True, null=True)\r\n     objetivo = models.CharField(max_value=200)\r\n-    imagen_campania = models.ImageField(upload_to='campanias/', blank=True, null=True) # <-- LA IMAGEN OBLIGATORIA DEL MODELO 1\r\n+    imagen_campaña = models.ImageField(upload_to='campanias/', blank=True, null=True) # <-- LA IMAGEN OBLIGATORIA DEL MODELO 1\r\n \r\n     def __str__(self):\r\n         return self.nombre\r\n \r\n"
+                },
+                {
+                    "date": 1784136247170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n class Campaña(models.Model):\r\n     nombre = models.CharField(max_value=100)\r\n     descripcion = models.TextField(blank=True, null=True)\r\n     objetivo = models.CharField(max_value=200)\r\n-    imagen_campaña = models.ImageField(upload_to='campanias/', blank=True, null=True) # <-- LA IMAGEN OBLIGATORIA DEL MODELO 1\r\n+    imagen_campaña = models.ImageField(upload_to='campanñas/', blank=True, null=True) # <-- LA IMAGEN OBLIGATORIA DEL MODELO 1\r\n \r\n     def __str__(self):\r\n         return self.nombre\r\n \r\n"
+                },
+                {
+                    "date": 1784136305993,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,14 @@\n from django.db import models\r\n \r\n-from django.db import models\r\n-\r\n class Campaña(models.Model):\r\n-    nombre = models.CharField(max_value=100)\r\n+    # CORREGIDO: max_value cambiado por max_length\r\n+    nombre = models.CharField(max_length=100)\r\n     descripcion = models.TextField(blank=True, null=True)\r\n-    objetivo = models.CharField(max_value=200)\r\n-    imagen_campaña = models.ImageField(upload_to='campanñas/', blank=True, null=True) # <-- LA IMAGEN OBLIGATORIA DEL MODELO 1\r\n+    # CORREGIDO: max_value cambiado por max_length\r\n+    objetivo = models.CharField(max_length=200)\r\n+    # CORREGIDO: Se cambia la 'ñ' por 'ni' para evitar errores de codificación\r\n+    imagen_campania = models.ImageField(upload_to='campanias/', blank=True, null=True) \r\n \r\n     def __str__(self):\r\n         return self.nombre\r\n \r\n"
+                },
+                {
+                    "date": 1784136328148,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,13 @@\n from django.db import models\r\n \r\n+from django.db import models\r\n+\r\n class Campaña(models.Model):\r\n-    # CORREGIDO: max_value cambiado por max_length\r\n-    nombre = models.CharField(max_length=100)\r\n+    nombre = models.CharField(max_value=100)\r\n     descripcion = models.TextField(blank=True, null=True)\r\n-    # CORREGIDO: max_value cambiado por max_length\r\n-    objetivo = models.CharField(max_length=200)\r\n-    # CORREGIDO: Se cambia la 'ñ' por 'ni' para evitar errores de codificación\r\n-    imagen_campania = models.ImageField(upload_to='campanias/', blank=True, null=True) \r\n+    objetivo = models.CharField(max_value=200)\r\n+    imagen_campaña = models.ImageField(upload_to='campaña/', blank=True, null=True) # <-- LA IMAGEN OBLIGATORIA DEL MODELO 1\r\n \r\n     def __str__(self):\r\n         return self.nombre\r\n \r\n"
+                },
+                {
+                    "date": 1784136338214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n from django.db import models\r\n \r\n from django.db import models\r\n \r\n-class Campaña(models.Model):\r\n+class Campa(models.Model):\r\n     nombre = models.CharField(max_value=100)\r\n     descripcion = models.TextField(blank=True, null=True)\r\n     objetivo = models.CharField(max_value=200)\r\n-    imagen_campaña = models.ImageField(upload_to='campaña/', blank=True, null=True) # <-- LA IMAGEN OBLIGATORIA DEL MODELO 1\r\n+    imagen_campania = models.ImageField(upload_to='campanias/', blank=True, null=True) # <-- LA IMAGEN OBLIGATORIA DEL MODELO 1\r\n \r\n     def __str__(self):\r\n         return self.nombre\r\n \r\n"
+                },
+                {
+                    "date": 1784136354617,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,12 @@\n-from django.db import models\r\n \r\n from django.db import models\r\n \r\n-class Campa(models.Model):\r\n-    nombre = models.CharField(max_value=100)\r\n-    descripcion = models.TextField(blank=True, null=True)\r\n-    objetivo = models.CharField(max_value=200)\r\n-    imagen_campania = models.ImageField(upload_to='campanias/', blank=True, null=True) # <-- LA IMAGEN OBLIGATORIA DEL MODELO 1\r\n+class Campaña(models.Model):\r\n+    nombre = models.CharField(max_length=150, unique=True)\r\n+    descripcion = models.TextField()\r\n+    fecha_inicio = models.DateField()\r\n+    presupuesto = models.DecimalField(max_digits=10, decimal_places=2)\r\n \r\n     def __str__(self):\r\n         return self.nombre\r\n \r\n"
+                }
+            ],
+            "date": 1784132445866,
+            "name": "Commit-0",
+            "content": "# campañas/models.py\r\nfrom django.db import models\r\n\r\nclass Campaña(models.Model):\r\n    nombre = models.CharField(max_length=150, unique=True)\r\n    descripcion = models.TextField()\r\n    fecha_inicio = models.DateField()\r\n    presupuesto = models.DecimalField(max_digits=10, decimal_places=2)\r\n\r\n    def __str__(self):\r\n        return self.nombre\r\n\r\nclass Actividad(models.Model):\r\n    campaña = models.ForeignKey(Campaña, on_delete=models.CASCADE, related_name='actividades')\r\n    nombre = models.CharField(max_length=150)\r\n    descripcion = models.TextField()\r\n    fecha_programada = models.DateTimeField()\r\n    evidencia_foto = models.ImageField(upload_to='evidencias/', null=True, blank=True)\r\n\r\n    def __str__(self):\r\n        return f\"{self.nombre} - {self.campaña.nombre}\""
+        }
+    ]
+}
