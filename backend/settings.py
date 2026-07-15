@@ -129,7 +129,11 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Simplifica el almacenamiento de archivos estáticos (compresión y caché)
+# Configuración de almacenamiento para archivos estáticos (WhiteNoise) y multimedia (Default)
 STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
